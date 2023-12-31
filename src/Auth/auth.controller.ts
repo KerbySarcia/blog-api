@@ -18,10 +18,15 @@ export const login = async (req: Request, res: Response, next: NextFunction) => 
 
     if (!isMatch) throw new CustomError("Invalid Credentials", 401);
 
-    const authToken =  signIn({ id: user._id, mobile_number: user.mobile_number, email: user.email, interests: user.interests });
+    const authToken = signIn({
+      id: user._id,
+      mobile_number: user.mobile_number,
+      email: user.email,
+      interests: user.interests,
+    });
 
-    return res.json({ auth_token:authToken });
-  } catch (error:unknown) {
+    return res.json({ auth_token: authToken });
+  } catch (error: unknown) {
     if (error instanceof CustomError) {
       res.status(error.statusCode);
     }

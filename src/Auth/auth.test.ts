@@ -46,7 +46,6 @@ describe("Post /auth", () => {
       .expect("Content-type", /json/)
       .expect(200)
       .then((response) => {
-        console.log(response.body);
         expect(response.body).toHaveProperty("auth_token");
       }));
 
